@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerActions playerInputs;
     private CharacterController characterController;
+    private Animator animator;
 
     private float verticalVelocity;
 
@@ -33,13 +34,23 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         SetMovement();
-
         SetAim();
+        AnimatorControllers();
+    }
+
+    private void AnimatorControllers()
+    {
+        float xVelocity = Vector3.Dot(movementDirection.normalized, transform.right);
+        float zVelocity = Vector3.Dot(movementDirection.normalized, transform.forward);
+
+        animator.SetFloat(AnimationVariables.xMovement, xVelocity, 0.1f, Time.deltaTime);
+        animator.SetFloat(AnimationVariables.zMovement, zVelocity, 0.1f, Time.deltaTime);
     }
 
     private void SetAim()
