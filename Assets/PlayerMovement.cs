@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float speed;
+    private float speed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private LayerMask aimMask;
 
@@ -13,28 +16,26 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private Animator animator;
 
-    private float verticalVelocity;
-
     private Vector3 movementDirection;
     private Vector2 movementInput;
-    private Vector2 aimInput;
+
     private Vector3 aimDirection;
+    private Vector2 aimInput;
+
+    private float verticalVelocity;
+    private bool isRunning;
 
     private void Awake()
     {
-        playerInputs = new PlayerActions();
-
-        playerInputs.Character.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
-        playerInputs.Character.Movement.canceled += context => movementInput = Vector2.zero;
-
-        playerInputs.Character.Aim.performed += context => aimInput = context.ReadValue<Vector2>();
-        playerInputs.Character.Aim.canceled += context => aimInput = Vector2.zero;
+        AssignInputEvents();
     }
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+
+        speed = walkSpeed;
     }
 
     private void Update()
@@ -51,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat(AnimationVariables.xMovement, xVelocity, 0.1f, Time.deltaTime);
         animator.SetFloat(AnimationVariables.zMovement, zVelocity, 0.1f, Time.deltaTime);
+
+        bool useRunAnimation = isRunning && movementDirection.magnitude > 0;
+        animator.SetBool(AnimationVariables.isRunning, useRunAnimation);
     }
 
     private void SetAim()
@@ -89,7 +93,38 @@ public class PlayerMovement : MonoBehaviour
         {
             verticalVelocity = -0.5f;
         }
+    }
 
+    private void Shoot()
+    {
+        animator.SetTrigger(AnimationVariables.fire);
+    }
+
+    #region Input System
+    private void AssignInputEvents()
+    {
+        playerInputs = new PlayerActions();
+
+        playerInputs.Character.Shoot.performed += context => Shoot();
+
+        playerInputs.Character.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
+        playerInputs.Character.Movement.canceled += context => movementInput = Vector2.zero;
+
+        playerInputs.Character.Aim.performed += context => aimInput = context.ReadValue<Vector2>();
+        playerInputs.Character.Aim.canceled += context => aimInput = Vector2.zero;
+
+        playerInputs.Character.Run.performed += context =>
+        {
+            isRunning = true;
+            speed = runSpeed;
+
+        };
+
+        playerInputs.Character.Run.canceled += context =>
+        {
+            isRunning = false;
+            speed = walkSpeed;
+        };
     }
 
     private void OnEnable()
@@ -101,4 +136,5 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInputs.Disable();
     }
+    #endregion
 }

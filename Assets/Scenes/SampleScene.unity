@@ -864,7 +864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516272d3a96b2224394e67ef62ed0fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  walkSpeed: 1.5
+  runSpeed: 3
   gravity: 9.81
   aimMask:
     serializedVersion: 2
