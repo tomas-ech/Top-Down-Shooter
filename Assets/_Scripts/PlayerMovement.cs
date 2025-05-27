@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerActions playerInputs;
     private CharacterController characterController;
     private Animator animator;
+    private Player player;
 
     private Vector3 movementDirection;
     private Vector2 movementInput;
@@ -25,17 +26,15 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity;
     private bool isRunning;
 
-    private void Awake()
-    {
-        AssignInputEvents();
-    }
-
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        player = GetComponent<Player>();
 
         speed = walkSpeed;
+
+        AssignInputEvents();
     }
 
     private void Update()
@@ -95,17 +94,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Shoot()
-    {
-        animator.SetTrigger(AnimationVariables.fire);
-    }
-
     #region Input System
     private void AssignInputEvents()
     {
-        playerInputs = new PlayerActions();
-
-        playerInputs.Character.Shoot.performed += context => Shoot();
+        playerInputs = player.playerInputs;
 
         playerInputs.Character.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
         playerInputs.Character.Movement.canceled += context => movementInput = Vector2.zero;
@@ -125,16 +117,6 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
             speed = walkSpeed;
         };
-    }
-
-    private void OnEnable()
-    {
-        playerInputs.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInputs.Disable();
     }
     #endregion
 }
