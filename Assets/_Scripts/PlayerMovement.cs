@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private LayerMask aimMask;
+    [SerializeField] private Transform aimTarget;
 
     private PlayerActions playerInputs;
     private CharacterController characterController;
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             aimDirection.Normalize();
 
             transform.forward = aimDirection;
+            aimTarget.position = new Vector3(hitInfo.point.x, transform.position.y + 1, hitInfo.point.z);
         }
     }
 
