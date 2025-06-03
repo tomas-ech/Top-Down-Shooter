@@ -50,11 +50,11 @@ public class PlayerMovement : MonoBehaviour
         float xVelocity = Vector3.Dot(movementDirection.normalized, transform.right);
         float zVelocity = Vector3.Dot(movementDirection.normalized, transform.forward);
 
-        animator.SetFloat(AnimationVariables.xMovement, xVelocity, 0.1f, Time.deltaTime);
-        animator.SetFloat(AnimationVariables.zMovement, zVelocity, 0.1f, Time.deltaTime);
+        animator.SetFloat(AnimationVariables.XMovement, xVelocity, 0.1f, Time.deltaTime);
+        animator.SetFloat(AnimationVariables.ZMovement, zVelocity, 0.1f, Time.deltaTime);
 
         bool useRunAnimation = isRunning && movementDirection.magnitude > 0;
-        animator.SetBool(AnimationVariables.isRunning, useRunAnimation);
+        animator.SetBool(AnimationVariables.IsRunning, useRunAnimation);
     }
 
     private void SetAim()

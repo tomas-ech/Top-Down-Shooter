@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -39,7 +37,7 @@ public class WeaponVisualController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            animator.SetTrigger(AnimationVariables.reload);
+            animator.SetTrigger(AnimationVariables.Reload);
             rig.weight = 0.15f;
         }
 

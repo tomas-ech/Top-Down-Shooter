@@ -16,6 +16,6 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Animator animator = GetComponentInChildren<Animator>();
 
-        animator.SetTrigger(AnimationVariables.fire);
+        animator.SetTrigger(AnimationVariables.Fire);
     }
 }
