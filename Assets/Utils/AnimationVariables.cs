@@ -4,4 +4,5 @@ public class AnimationVariables
     public static string zMovement = "zMovement";
     public static string isRunning = "isRunning";
     public static string fire = "Fire";
+    public static string reload = "Reload";
 }
