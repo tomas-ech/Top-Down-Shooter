@@ -11,6 +11,14 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void ActivateRig()
     {
-        weaponVisualController.ChangeRigWeigth();
+        weaponVisualController.ChangeRigWeigthToOne();
     }
+
+    public void WeaponGrabIsOver()
+    {
+        weaponVisualController.ChangeRigWeigthToOne();
+        weaponVisualController.ChangeRigIKWeigthToOne();
+    }
+
+
 }

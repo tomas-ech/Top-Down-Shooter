@@ -1753,6 +1753,7 @@ MonoBehaviour:
   rifle: {fileID: 120059360}
   rigIncrease: 2.75
   leftHand: {fileID: 550667129}
+  leftHand_IK: {fileID: 553842836}
 --- !u!1 &1829779703
 GameObject:
   m_ObjectHideFlags: 0
