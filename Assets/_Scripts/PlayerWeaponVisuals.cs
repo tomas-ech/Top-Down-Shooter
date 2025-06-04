@@ -52,7 +52,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
                 canRigIncrease = false;
             }
         }
-        
+
         if (canRigIKIncrease)
         {
             leftHand_IK.weight += rigIncrease * Time.deltaTime;
@@ -75,10 +75,15 @@ public class PlayerWeaponVisuals : MonoBehaviour
         PauseRig();
         animator.SetFloat(AnimationVariables.WeaponType, ((float)grabType));
         animator.SetTrigger(AnimationVariables.Grab);
+        animator.SetBool(AnimationVariables.IsBusyGrabbing, true);
     }
 
     public void ChangeRigWeigthToOne() => canRigIncrease = true;
-    public void ChangeRigIKWeigthToOne() => canRigIKIncrease = true;
+    public void ChangeRigIKWeigthToOne()
+    {
+        canRigIKIncrease = true;
+        animator.SetBool(AnimationVariables.IsBusyGrabbing, false);
+    }
 
     private void CheckWeaponSwitch()
     {
