@@ -1856,9 +1856,10 @@ GameObject:
   - component: {fileID: 1789583730}
   - component: {fileID: 1789583731}
   - component: {fileID: 1789583733}
+  - component: {fileID: 1789583735}
   - component: {fileID: 1789583726}
-  - component: {fileID: 1789583732}
   - component: {fileID: 1789583734}
+  - component: {fileID: 1789583732}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1881,10 +1882,6 @@ MonoBehaviour:
   walkSpeed: 1.5
   runSpeed: 3
   gravity: 9.81
-  aimMask:
-    serializedVersion: 2
-    m_Bits: 192
-  aimTarget: {fileID: 835143292}
 --- !u!4 &1789583730
 Transform:
   m_ObjectHideFlags: 0
@@ -1977,6 +1974,22 @@ MonoBehaviour:
   rigIncrease: 2.75
   leftHand: {fileID: 550667129}
   leftHand_IK: {fileID: 553842836}
+--- !u!114 &1789583735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789583725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2156c8a337b56845945bd50990ec18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimMask:
+    serializedVersion: 2
+    m_Bits: 192
+  aimTarget: {fileID: 835143292}
 --- !u!1 &1829779703
 GameObject:
   m_ObjectHideFlags: 0
