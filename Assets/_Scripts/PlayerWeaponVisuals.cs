@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class WeaponVisualController : MonoBehaviour
+public class PlayerWeaponVisuals : MonoBehaviour
 {
     private Animator animator;
 
