@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 835143291}
   - component: {fileID: 835143290}
   - component: {fileID: 835143289}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2047,6 +2047,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3300329057235508257, guid: 5b454f9a2f41a2e4eb53843f60e84901, type: 3}
   bulletSpeed: 20
   gunPoint: {fileID: 86503497}
+  weaponHolder: {fileID: 343367693}
+  aim: {fileID: 1300835173}
 --- !u!114 &1789583733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,6 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimTarget: {fileID: 1300835173}
+  isAimPrecise: 1
   cameraTarget: {fileID: 835143292}
   maxCameraDistance: 1.5
   minCameraDistance: 1
